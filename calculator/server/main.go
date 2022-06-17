@@ -19,10 +19,12 @@ func main() {
 		"localhost:%d", 50052)
 	lis, err := net.Listen("tcp", addr)
 
-	defer lis.Close()
 	if err != nil {
 		log.Fatalf("Failed to connect: %v", err)
 	}
+	defer lis.Close()
+
+	log.Printf("RPC server listen on %s", addr)
 
 	s := grpc.NewServer()
 

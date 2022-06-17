@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 
@@ -24,12 +23,6 @@ func main() {
 	defer listen.Close()
 
 	c := pb.NewCalculatorServiceClient(listen)
+	Prime(c)
 
-	rs, err := c.Sum(context.Background(), &pb.SumRequest{FirstNumber: 2, SecondNumber: 2})
-
-	if err != nil {
-		log.Fatalf("could not sum: %v", err)
-	}
-
-	log.Println(rs.Result)
 }

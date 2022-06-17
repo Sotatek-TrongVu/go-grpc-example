@@ -4,8 +4,11 @@ package calculator;
 option go_package= "github.com/hiiamtrong/go-grpc-example/calculator/proto";
 
 import "sum.proto";
+import "prime.proto";
+
 
 service CalculatorService{
     rpc Sum(SumRequest) returns (SumResponse);
+    rpc Prime(PrimeRequest) returns (stream PrimeResponse);
 }
 

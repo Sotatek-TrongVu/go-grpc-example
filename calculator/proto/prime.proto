@@ -1,0 +1,12 @@
+syntax="proto3";
+package calculator;
+
+option go_package= "github.com/hiiamtrong/go-grpc-example/calculator/proto";
+
+message PrimeRequest {
+  int32 number = 1;
+}
+
+message PrimeResponse {
+  int32 prime = 1;
+}
