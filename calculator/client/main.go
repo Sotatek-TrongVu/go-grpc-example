@@ -23,6 +23,6 @@ func main() {
 	defer listen.Close()
 
 	c := pb.NewCalculatorServiceClient(listen)
-	Prime(c)
+	doAvg(c)
 
 }

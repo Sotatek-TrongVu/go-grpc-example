@@ -1,0 +1,14 @@
+syntax="proto3";
+package calculator;
+
+option go_package= "github.com/hiiamtrong/go-grpc-example/calculator/proto";
+
+
+message AvgRequest {
+    double number = 1;
+}
+
+
+message AvgResponse {
+    double avg = 1;
+}

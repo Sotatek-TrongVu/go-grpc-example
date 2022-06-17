@@ -19,5 +19,5 @@ func main() {
 	defer client.Close()
 
 	c := pb.NewGreetServiceClient(client)
-	doGreetManyTimes(c)
+	doGreetLong(c)
 }
