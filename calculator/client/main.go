@@ -23,6 +23,6 @@ func main() {
 	defer listen.Close()
 
 	c := pb.NewCalculatorServiceClient(listen)
-	doAvg(c)
+	doMax(c)
 
 }

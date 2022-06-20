@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 
 	pb "github.com/hiiamtrong/go-grpc-example/greet/proto"
 )
@@ -49,4 +50,26 @@ func (s *Server) SayLongTime(stream pb.GreetService_SayLongTimeServer) error {
 	})
 
 	return nil
+}
+
+func (s *Server) SayEveryOne(stream pb.GreetService_SayEveryOneServer) error {
+	log.Println("SayEveryOne is invoked")
+	for {
+		in, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("failed to receive a request: %v", err)
+		}
+		log.Printf("Received a request: %v", in.GetName())
+
+		err = stream.Send(&pb.GreetResponse{
+			Result: "hello " + in.GetName(),
+		})
+		if err != nil {
+			log.Fatalf("failed to send a response: %v", err)
+		}
+	}
+
 }

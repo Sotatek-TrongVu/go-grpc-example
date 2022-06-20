@@ -18,6 +18,7 @@ service GreetService {
     rpc SayManyTimes(GreetRequest) returns   ( stream GreetResponse);
 
     rpc SayLongTime( stream GreetRequest) returns ( GreetResponse);
+    rpc SayEveryOne( stream GreetRequest) returns ( stream GreetResponse);
 }
 
 

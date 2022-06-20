@@ -58,3 +58,26 @@ func (s *Server) Avg(stream pb.CalculatorService_AvgServer) error {
 	return nil
 
 }
+
+func (s *Server) Max(stream pb.CalculatorService_MaxServer) error {
+	max := int32(0)
+	for {
+		in, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+
+		if err != nil {
+			return err
+		}
+
+		if in.GetNumber() <= max {
+			continue
+		}
+		max = in.GetNumber()
+		stream.Send(&pb.MaxResponse{
+			Max: max,
+		})
+	}
+	return nil
+}
